@@ -6,9 +6,32 @@ A simple tool that lets you send emails directly from Amazon Q using your Gmail 
 
 This is an MCP server that connects Amazon Q to your Gmail account, allowing you to send emails by simply asking Q to do it for you.
 
-## Setup Guide (For Beginners)
+## Prerequisites
 
-### Step 1: Install the package
+- Python 3.10 or higher
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) package manager installed
+  - Follow the installation instructions at: https://docs.astral.sh/uv/getting-started/installation/
+  - After installing uv, run `uv python install` to ensure Python is properly set up with uv
+
+## Setup Guide
+
+### Step 1: Add the MCP server to your mcp.json file
+
+Add the following configuration to your `~/.aws/amazonq/mcp.json` file:
+
+```json
+"email-mcp": {
+  "command": "uvx",
+  "args": ["--from", "git+https://github.com/mikebrugnoni/q-email-mcp.git", "email-mcp"],
+  "env": {
+    "FASTMCP_LOG_LEVEL": "ERROR"
+  },
+  "autoApprove": [],
+  "disabled": false
+}
+```
+
+### Step 2: Install the package (Alternative Method)
 
 ```bash
 # Navigate to the email_mcp directory
